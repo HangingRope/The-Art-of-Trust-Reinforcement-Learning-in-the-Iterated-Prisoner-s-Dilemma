@@ -4,9 +4,6 @@ import sys
 from dataclasses import dataclass
 from statistics import mean
 
-# -------------------------
-# Payoffs & utils
-# -------------------------
 def payoff(player, agent, T=5, R=3, P=1, S=0):
     if player == "C" and agent == "C":
         return R, R
@@ -31,9 +28,6 @@ class RoundResult:
     player_reward: int
     agent_reward: int
 
-# -------------------------
-# Q-learning Agent
-# -------------------------
 class QLearningAgent:
     def __init__(self, alpha=0.15, gamma=0.95, epsilon=0.25, epsilon_decay=0.995):
         self.alpha = alpha
@@ -76,9 +70,6 @@ class QLearningAgent:
                 prev_p, prev_a = a1, a2
         self.epsilon = 0.03
 
-# -------------------------
-# Pygame UI
-# -------------------------
 pygame.init()
 WIDTH, HEIGHT = 950, 580   # smaller window
 screen = pygame.display.set_mode((WIDTH, HEIGHT))
@@ -88,7 +79,6 @@ small = pygame.font.SysFont("Arial", 14)
 mini = pygame.font.SysFont("Arial", 12)
 clock = pygame.time.Clock()
 
-# Colors & theme
 BG = (24, 26, 30)
 PANEL = (34, 38, 45)
 CARD_BG = (250, 250, 250)
@@ -178,9 +168,6 @@ def percent_coop(history, who='player'):
         return sum(1 for r in history if r.player == 'C')/len(history) * 100
     return sum(1 for r in history if r.agent == 'C')/len(history) * 100
 
-# -------------------------
-# Main gameplay function
-# -------------------------
 def play_game(total_rounds=30, pretrain_episodes=2000, episode_length=6):
     left_w = 260
     graph_h = 120
@@ -247,7 +234,6 @@ def play_game(total_rounds=30, pretrain_episodes=2000, episode_length=6):
         graph_rect = (tree_area_x, 12, WIDTH - tree_area_x - 12, graph_h)
         draw_graph(screen, graph_rect, history, total_rounds)
 
-        # --- Compressed tree that always fits ---
         base_y = graph_rect[1] + graph_h + 16
         max_tree_h = HEIGHT - base_y - 40
         if history:
@@ -269,4 +255,5 @@ def play_game(total_rounds=30, pretrain_episodes=2000, episode_length=6):
 
 if __name__ == "__main__":
     play_game(total_rounds=30, pretrain_episodes=2000, episode_length=6)
+
 
