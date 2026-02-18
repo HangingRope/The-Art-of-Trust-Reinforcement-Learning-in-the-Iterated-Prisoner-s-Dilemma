@@ -1,9 +1,3 @@
-"""
-Prisoner's Dilemma  Pygame UI with smart Q-learning agent.
-
-Fix: The round tree is now compressed so it always fits inside the window.
-"""
-
 import pygame
 import random
 import sys
@@ -275,3 +269,4 @@ def play_game(total_rounds=30, pretrain_episodes=2000, episode_length=6):
 
 if __name__ == "__main__":
     play_game(total_rounds=30, pretrain_episodes=2000, episode_length=6)
+
